@@ -1,7 +1,10 @@
+/* Folhas de estilo globais - Afetam toda a aplicação */
+
 /* CSS reset */
 
 *{
   box-sizing: border-box;
+  outline: none;
 }
 
 html, body {
@@ -34,6 +37,17 @@ a:hover{
   border-bottom: 1px dotted gray;
 }
 
+/* Centraliza e limita o crescimento da tela */
+
+app-root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+}
+
 /* Sticky footer */
 
 html, body, app-root {
@@ -41,10 +55,12 @@ html, body, app-root {
   height: 100%;
 }
 
-app-root {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
+/* Responsivo */
+
+@media (min-width: 640px) {
+  body {
+    background-position: center;
+  }
 }
 
 /* Botões genéricos */
@@ -55,6 +71,7 @@ app-root {
   background: linear-gradient( rgb(135,206,235), rgb(173,216,230));
   border-radius: .3rem;
   border: none;
+  text-transform: uppercase;
 }
 
 .basic-button {
@@ -66,6 +83,10 @@ app-root {
 /* Classes de uso geral */
 .center {
   text-align: center;
+}
+
+.small {
+  font-size: small;
 }
 
 /* Bordas das caixas */
