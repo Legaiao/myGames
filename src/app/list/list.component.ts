@@ -42,10 +42,10 @@ export class ListComponent implements OnInit {
   constructor(private db: AngularFirestore) {
 
     // Ordena pelo título ao carregar
-    this.orderBy = "title";
+    this.orderBy = 'title';
 
     // Em ordem ascendente ao carregar
-    this.orderDr = "asc";
+    this.orderDr = 'asc';
 
   }
 
@@ -89,6 +89,27 @@ export class ListComponent implements OnInit {
       this.getList(); // Atualiza a listagem com o novo parâmetro
     }
     return false; // Sai sem fazer nada
+  }
+
+
+  // Apaga um documento
+  deleteGame(gameKey, gameTitle) {
+
+    // Mensagem para confirmar se deseja apagar (Observe a ! = NOT)
+    if (!confirm(`Hey!\nTem certeza que deseja apagar "${gameTitle}" da sua coleção?`)) {
+      return false;
+    }
+
+    this.db.collection('games').doc(gameKey).delete()
+      .then(res => {
+        alert(`"${gameTitle}" foi apagado da sua coleção"\nClique em OK para continuar.`);
+      })
+      .catch(err => {
+        console.error(`Falha ao apagar: ${err}`);
+      });
+
+    return false;
+
   }
 
 }
