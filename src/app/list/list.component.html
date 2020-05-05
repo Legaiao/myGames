@@ -1,9 +1,9 @@
 <h2>Lista de Games</h2>
 
-<!-- Ferramentas de ordenação da listagem -->
+<!-- Ferrmanetas de ordenação da listagem -->
 <div class="orderbox hborder">
 
-  <!-- Escolha do campo pelo qual ordenar (default: title) -->
+  <!-- Escolha do campo pelo qual ordenar (dafault: title) -->
   <div>
     Ordem:
     <select name="orderby" (change)="changeOrderField($event.target.value)">
@@ -15,8 +15,10 @@
   </div>
 
   <!-- Ordenação menor para o maior -->
-  <a title="Ascendente" [ngClass]="{'mark' : orderDr == 'asc'}"(click)="changeOrderDir('asc')"><i class="fas fa-fw fa-angle-up"></i></a>
-  <a title="Descendente" [ngClass]="{'mark' : orderDr == 'desc'}"(click)="changeOrderDir('desc')"><i class="fas fa-fw fa-angle-down"></i></a>
+  <a title="Ascendente" [ngClass]="{'mark': orderDr == 'asc'}" (click)="changeOrderDir('asc')"><i
+      class="fas fa-fw fa-arrow-alt-circle-up"></i></a>
+  <a title="Descendente" [ngClass]="{'mark': orderDr == 'desc'}" (click)="changeOrderDir('desc')"><i
+      class="fas fa-fw fa-arrow-alt-circle-down"></i></a>
 
   <!-- Tics das bordas -->
   <div class="hbd tl"></div>
@@ -31,16 +33,18 @@
   <!-- Loop dos documentos retornados -->
   <div *ngFor="let g of games | async" class="list vborder">
 
-    <img src="{{ g.cover }}" alt="{{ g.title }}">
-    <h3>{{ g.title }}</h3>
+    <img src="{{g.cover}}" alt="{{g.title}}">
+    <h3>{{g.title}}</h3>
     <div class="small">{{g.platform}} - Mídia {{g.media}}</div>
     <p>{{g.description}}</p>
     <div class="tools">
-      <span class="small"> Adquirido em {{ g.date | date : 'dd/MM/yyyy'}}.</span>
+      <span class="small">Adquirido em {{g.date | date : 'dd/MM/yyyy'}}.</span>
 
-      <!-- Botões para editar e apagar o documento -->
-      <a title="Editar {{g.title}}"><i class="far fa-fw fa-edit"></i></a>
-      <a title="Apagar {{g.title}}"(click)="deleteGame(g.id, g.title)"><i class="far fa-fw fa-trash-alt"></i></a>
+      <!-- ///// 1) Botões para editar o documento -->
+      <a title="Editar {{g.title}}" [routerLink]="['/edit/', g.id]"><i class="fas fa-fw fa-edit"></i></a>
+
+      <!-- Botões para apagar o documento -->
+      <a title="Apagar {{g.title}}" (click)="deleteGame(g.id, g.title)"><i class="fas fa-fw fa-trash-alt"></i></a>
     </div>
 
     <!-- Tics das bordas -->
